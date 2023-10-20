@@ -16,6 +16,6 @@ router.get('/checkSession', sess.checkSession, sess.checkPermission);
 router.post('/auth', sess.checkAuthentification, sess.setSession)
 
 // suppression de la session dans redis
-router.post('/logout', sess.logout)
+router.get('/logout', sess.logout)
 
 module.exports = router

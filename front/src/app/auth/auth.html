@@ -1,0 +1,12 @@
+<div *ngIf="message">{{message.message}}</div>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="pseudo">
+    <input type="text" formControlName="pwd">
+    <button type="submit">valider</button>
+</form>
+
+<div>
+<button (click)="onLogout()">logout</button>
+</div>

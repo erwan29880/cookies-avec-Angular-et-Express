@@ -4,7 +4,7 @@ const db = new bdd();
 const cors = require("cors");
 const session = require('express-session');
 const redis = require('redis');
-const exTime = 20000;
+const exTime = 100000;
 
 // -----------------------------------------
 // middlewares redis, session
@@ -18,7 +18,7 @@ const sessionStore = new RedisStore({ client: redisClient });
 
 exports.corsExp = cors(
     {
-        origin: 'http://localhost:5101',
+        origin: 'http://localhost:4200',
         credentials: true
     }
 );
@@ -49,7 +49,7 @@ exports.checkAuthentification = (req, res, next) => {
     db.getPseudoPwd(req.body.pseudo, req.body.pwd).then(resp => {
         if (resp === undefined) {
             res.header("Content-Type", "application/json");
-            res.status(403).send({message :"pas d'identification en base de données"});
+            res.status(200).send({message :"pas d'identification en base de données"});
         }
         else next();
     })
@@ -66,7 +66,7 @@ exports.checkSession = (req, res, next) => {
         }
         else {
             res.header("Content-Type", "application/json");
-            res.status(403).send({message :'vous n\'êtes pas un utilisateur enregistré'});
+            res.status(200).send({message :'nosession'});
         }
     });
 };
@@ -81,7 +81,7 @@ exports.checkPermission = (req, res, next) => {
             res.status(200).send({message : "session vérifiée"});
         }
         else {
-            res.status(403).send({message :'vous n\'êtes pas un utilisateur enregistré'});        
+            res.status(200).send({message :'nosession'});        
         }
     })
 }
@@ -94,7 +94,7 @@ exports.checkPermission = (req, res, next) => {
 exports.setSession = async (req, res, next) => {
     // ajout autre clé/valeur dans redis avec "auth"
     redisClient.set(req.session.id, 'auth', 'EX', exTime, (err, reply) => {
-        if (err) res.status(403).send({message : "nous n'avons pas pu vous autoriser"});
+        if (err) res.status(200).send({message : "nous n'avons pas pu vous autoriser"});
     });
     // ajout d'une date de péremption pour la permission
     redisClient.expire(req.session.id, parseInt(exTime/1000));
