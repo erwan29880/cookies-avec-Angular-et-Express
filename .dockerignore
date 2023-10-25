@@ -1,5 +1,7 @@
 front/package-lock.json
 front/node_modules
+front-built/node_modules
+front-built/package-lock.json
 serveur/package-lock.json
 serveur/node_modules
 readme.md

@@ -10,8 +10,8 @@ services:
   express:
     container_name: "express_cookie_angular"
     build:
-      context: .
-      dockerfile: ./serveur/DockerfileNode 
+      context: ./serveur
+      dockerfile: DockerfileNode 
     depends_on:
       - redis_cookie
 
@@ -31,12 +31,10 @@ services:
   angular:
     container_name: "front_cookie_angular"
     build:
-      context: .
-      dockerfile: ./front/DockerfileAngular 
+      context: ./front-built
+      dockerfile: DockerfileAngular 
     depends_on:
       - redis_cookie
       - express
     ports: 
-      - 4200:4200
-    command: > 
-        bash -c "ng serve --host 0.0.0.0 --port 4200"
+      - 4201:4200

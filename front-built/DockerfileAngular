@@ -6,5 +6,5 @@ RUN npm install
 # RUN npm ci --omit=dev
 COPY . .
 # ENV NODE_ENV=production
-EXPOSE 5100
+EXPOSE 4200
 CMD [ "node", "index.js" ]
