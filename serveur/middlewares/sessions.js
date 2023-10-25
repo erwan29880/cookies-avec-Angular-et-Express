@@ -20,7 +20,7 @@ const sessionStore = new RedisStore({ client: redisClient });
 
 exports.corsExp = cors(
     {
-        origin: ['http://localhost:4200', 'http://localhost:4201'],
+        origin: 'http://localhost:4201',
         credentials: true
     }
 );
@@ -80,7 +80,7 @@ exports.checkSession = (req, res, next) => {
 exports.checkPermission = (req, res, next) => {
     redisClient.get(req.session.id, (err, reply) => {
         if (reply === "auth") {
-            res.status(200).send({message : "session vérifiée"});
+            res.status(200).send({message : "session"});
         }
         else {
             res.status(200).send({message :'nosession'});        
@@ -108,14 +108,12 @@ exports.setSession = async (req, res, next) => {
 /**
  * supprimer l'identifiant de session dans redis 
  */
-exports.logout = (req, res, next) => {
+exports.logout = (req, res) => {
     redisClient.del(req.session.id, (err, reply) => {
         if (err) res.status(200).send({message : "erreur de déconnection"}); 
         if (reply === 1) {
-            console.log("ok")
             res.status(200).send({message : "vous êtes bien déconnecté"});
         } else {
-            console.log("pasok")
             res.status(200).send({message : "vous n'êtes pas connecté"});
         }
     });

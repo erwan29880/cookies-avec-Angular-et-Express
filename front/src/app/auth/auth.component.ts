@@ -14,7 +14,11 @@ export class AuthComponent implements OnInit{
 
 
   constructor(private service: FetchService, private formBuilder: FormBuilder) {
-    this.service.checkSession().subscribe(res => this.message = res);    
+    this.service.checkSession().subscribe(res => {
+      if (res.message === "nosession") this.message = {message: "vous n'êtes pas connecté(e)"};
+      else if (res.message === "session") this.message = {message: "vous êtes connecté(e)"};
+      else this.message = res;
+    });    
   }
 
   ngOnInit() {
@@ -25,7 +29,11 @@ export class AuthComponent implements OnInit{
   }
 
   onSubmit(){
-    this.service.login(this.form.value).subscribe(res => this.message = res);
+    this.service.login(this.form.value).subscribe(res => {
+      if (res.message === "nosession") this.message = {message: "vous n'êtes pas connecté(e)"};
+      else if (res.message === "session") this.message = {message: "vous êtes connecté(e)"};
+      else this.message = res;
+    });
   }
 
   onLogout() {

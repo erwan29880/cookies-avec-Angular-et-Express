@@ -1,3 +1,12 @@
 <h1>test de session avec angular et node</h1>
-<button (click)="onAuth()">authentification</button> - <button (click)="onIndex()">test authentification</button>
-<router-outlet></router-outlet>
+<div class="container">
+    <div class="flex-button">
+        <div>
+            <button (click)="onAuth()">authentification</button>
+        </div>
+        <div>
+            <button (click)="onIndex()">espace sécurisé</button>
+        </div>
+    </div>
+        <router-outlet></router-outlet>
+</div>

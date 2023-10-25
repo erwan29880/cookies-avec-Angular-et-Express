@@ -4,8 +4,8 @@ import { FetchService } from '../fetch.service';
 @Component({
   selector: 'app-index',
   template: `
-    <div *ngIf="auth">connecté !</div>
-    <div *ngIf="!auth">pas connecté !</div>
+    <div *ngIf="!auth" class="message">Vous n'êtes pas connecté(e)</div>
+    <div *ngIf="auth" class="message">vous êtes connecté(e)</div>
   `
 })
 export class IndexComponent implements OnInit {

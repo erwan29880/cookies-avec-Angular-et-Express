@@ -9,8 +9,7 @@ front/out-tsc
 front/bazel-out
 
 # Node
-front/node_modules
-front/.vscode/*
+front
 serveur/node_modules
 serveur/redis
 front-built/node_modules
