@@ -2,38 +2,14 @@
 
 ## installation :  
 
-#### redis : gestion de session
 ```bash
-docker-compose up -d 
+docker-compose up -d --build
 ```
 
-
-#### sqlite : gestion des utilisateurs
-
-```bash
-cd serveur
-npm install
-```
-
-décommenter les lignes de création et approvisionnement de la base de données sqlite puis effectuer deux fois la manipulation suivante :
-```bash 
-node index.js 
-ctrl + c 
-``` 
-
-#### démarrer le serveur de développement :  
-
-```bash
-node index.js
-```
-
-#### installation et démarrage du serveur front angular de développement
-
-```bash
-cd front
-npm install
-ng serve
-```  
+Les éléments qui peuvent être changés pour les configurations d'url : 
+- proxy/default.conf
+- front/src/app/fetch.service.ts
+- serveur/middlewares/session.js
 
 #### utilisation :  
 

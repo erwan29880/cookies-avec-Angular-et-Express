@@ -1,0 +1,10 @@
+FROM node:18
+
+WORKDIR /usr/src/app
+RUN npm install -g @angular/cli 
+COPY ./front/package.json ./
+RUN npm install
+COPY ./front .
+# CD ./front
+EXPOSE 4200
+# CMD [ "ng", "serve" ]
