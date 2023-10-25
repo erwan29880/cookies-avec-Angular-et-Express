@@ -1,0 +1,10 @@
+FROM node:18
+
+WORKDIR /usr/src/app
+COPY ./serveur/package.json ./
+RUN npm install
+# RUN npm ci --omit=dev
+COPY ./serveur .
+# ENV NODE_ENV=production
+EXPOSE 5100
+CMD [ "node", "index.js" ]

@@ -1,0 +1,32 @@
+version: '3.6'
+services:
+  redis_cookie:
+    container_name: "redis_cookie_angular"
+    image: redis:6
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command: redis-server
+    volumes:
+      - ./redis:/var/lib/redis
+
+  express:
+    container_name: "express_cookie_angular"
+    build:
+      context: .
+      dockerfile: ./serveur/DockerfileNode 
+    depends_on:
+      - redis_cookie
+    volumes:
+      - ./serveur_volume:/src
+
+  proxy:
+    container_name: "proxy_cookie_angular"
+    build:
+      context: .
+      dockerfile: ./proxy/DockerfileProxy
+    restart: always 
+    ports:
+      - 80:80
+    depends_on:
+      - redis_cookie
+      - express

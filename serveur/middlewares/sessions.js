@@ -9,10 +9,12 @@ const exTime = 100000;
 // -----------------------------------------
 // middlewares redis, session
 
-
 // redis
 const RedisStore = require('connect-redis')(session);
-const redisClient = redis.createClient({legacyMode: true});
+const redisClient = redis.createClient({
+    url: 'redis://redis_cookie:6379',
+    legacyMode: true
+});
 redisClient.connect();
 const sessionStore = new RedisStore({ client: redisClient });
 

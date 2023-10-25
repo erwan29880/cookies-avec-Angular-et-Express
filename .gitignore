@@ -14,3 +14,4 @@ front/.vscode/*
 serveur/node_modules
 serveur/redis
 serveur/bdd.db
+redis
