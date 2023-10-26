@@ -1,6 +1,19 @@
 # gestion de session distante avec express et angular 
 
-## installation :  
+## installation de l'application avec docker :  
+
+Cloner la branche prod puis : 
+```bash 
+docker-compose up --build
+```    
+
+Aller sur localhost:4201 .
+
+Si besoin de modifier les serveurs, aller sur la branche docker-angular-built. Les fichiers de développement front sont dans le dossier front, ceux du back-end sont dans le dossier serveur.   
+Pour une modification du port du serveur front (docker-compose), il faut modifier le fichier serveur/middlewares/session et y rentrer la nouvelle url pour les CORS.
+
+
+## installation manuelle des composants :  
 
 #### redis : gestion de session
 ```bash
